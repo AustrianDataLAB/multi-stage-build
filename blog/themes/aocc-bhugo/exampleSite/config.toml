@@ -1,7 +1,7 @@
-baseurl = "https://localhost:1313"
+baseurl = "https://username.github.io"
 DefaultContentLanguage = "en"
-title = "aocc blog"
-theme = "aocc-bhugo"
+title = "Beautiful Hugo"
+theme = "beautifulhugo"
 pygmentsStyle = "trac"
 pygmentsUseClasses = true
 pygmentsCodeFences = true
@@ -13,9 +13,9 @@ pygmentsCodefencesGuessSyntax = true
 
 [Params]
 #  homeTitle = "Beautiful Hugo Theme" # Set a different text for the header on the home page
-  subtitle = "Austrian Open Cloud Community Blog"
+  subtitle = "Build a beautiful and simple website in minutes"
   mainSections = ["post","posts"]
-  logo = "img/AOCC-Logo.png" # Expecting square dimensions
+  logo = "img/avatar-icon.png" # Expecting square dimensions
   favicon = "img/favicon.ico"
   dateFormat = "January 2, 2006"
   commit = false
@@ -44,12 +44,36 @@ pygmentsCodefencesGuessSyntax = true
 
 [Author]
   # Set only your "username" for default hosts and full URLs otherwise (e.g., "https://MyGitLab.org/username")
-  name = "AOCC"
-  website = "https://webportal.dev.austrianopencloudcommunity.org/"
-  email = "support@austrianopencloudcommunity.org"
-  github = "AustrianDataLab"
-  youtube = "channel/UCMA6vp20zvEv6wDQ06b6qUQ" # or channel/channelname
-  slack = "aocc-public"
+  name = "Some Person"
+  website = "yourwebsite.com"
+  email = "youremail@domain.com"
+  facebook = "username"
+  github = "username"
+  gitlab = "username"
+  bitbucket = "username"
+  twitter = "username"
+  reddit = "username"
+  linkedin = "username"
+  xing = "username"
+  stackoverflow = "users/XXXXXXX/username"
+  snapchat = "username"
+  instagram = "username"
+  youtube = "user/username" # or channel/channelname
+  soundcloud = "username"
+  spotify = "username"
+  bandcamp = "username"
+  itchio = "username"
+  vk = "username"
+  paypal = "username"
+  telegram = "username"
+  500px = "username"
+  codepen = "username"
+  mastodon = "url"
+  kaggle = "username"
+  weibo = "username"
+  slack = "username"
+  discord = "invite code (https://discord.gg/XXXXXXX)"
+  strava = "userid"
 
 [[menu.main]]
     name = "Blog"
