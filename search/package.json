@@ -1,0 +1,21 @@
+{
+  "name": "blogix",
+  "version": "1.0.0",
+  "description": "An indexer for a statically generated html blog",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "indexer",
+    "search",
+    "static"
+  ],
+  "author": "Adam McCartney",
+  "license": "Unlicense",
+  "devDependencies": {
+    "grunt": "^1.6.1",
+    "string": "^3.3.3",
+    "toml": "^3.0.0"
+  }
+}
