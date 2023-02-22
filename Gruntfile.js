@@ -4,7 +4,7 @@ var S = require('string');
 /* Original: 
     * https://gist.github.com/sebz/efddfc8fdcb6b480f567 */
 
-var CONTENT_PATH_PREFIX = "blog/content/post"
+var CONTENT_PATH_PREFIX = "blog/content/"
 
 module.exports = function(grunt) {
 
@@ -15,6 +15,7 @@ module.exports = function(grunt) {
         var indexPages = function() {
             var pagesIndex = [];
             grunt.file.recurse(CONTENT_PATH_PREFIX, function(abspath, rootdir, subdir, filename) {
+                console.log("Using: ", abspath);
                 grunt.verbose.writeln("Parse file:",abspath);
                 pagesIndex.push(processFile(abspath, filename));
             });
