@@ -1,0 +1,29 @@
+version: "2"
+
+services:
+  aocc-blog:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    container_name: aocc-blog
+    volumes:
+      - ./nginxconfig/mime.types:/etc/nginx/mime.types
+      - ./nginxconfig/nginx.conf:/etc/nginx/nginx.conf
+      - ./nginxconfig/sites-enabled/:/etc/nginx/sites-enabled/
+      - ./openssl/server.crt:/etc/ssl/server.crt 
+      - ./openssl/server.key:/etc/ssl/server.key
+    ports:
+      - 443:443
+    healthcheck:
+      test: wget --quiet --tries=3 --spider http://localhost:443 || exit 1
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    restart: unless-stopped
+
+volumes:
+  mime.types: {}
+  nginx.conf: {}
+  sites-enabled: {}
+  server.crt: {}
+  server.key: {}
