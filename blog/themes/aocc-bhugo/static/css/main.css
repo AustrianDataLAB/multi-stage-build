@@ -945,3 +945,18 @@ h4.see-also {
     overflow-x: auto;
     overflow-y: hidden;
   }
+
+search-form {
+    color: #ffff00;
+    allign: center;
+}
+
+/* Form styling */
+input {
+    border-radius: 8px;
+    border: 0.06;
+    height: 29px;
+    padding: 0 .5em;
+}
+
+
