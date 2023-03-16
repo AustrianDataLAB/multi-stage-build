@@ -1,6 +1,6 @@
 SHELL := /usr/bin/env bash
 
-IMAGE_NAME := blog-search_aocc-blog
+IMAGE_NAME := multi-stage-build-aocc-blog
 
 .PHONY:
 generate_certs:
