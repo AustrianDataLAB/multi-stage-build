@@ -13,9 +13,9 @@ services:
       - ./openssl/server.crt:/etc/ssl/server.crt 
       - ./openssl/server.key:/etc/ssl/server.key
     ports:
-      - 443:443
+      - 6443:6443
     healthcheck:
-      test: wget --quiet --tries=3 --spider http://localhost:443 || exit 1
+      test: wget --quiet --tries=3 --spider http://localhost:6443 || exit 1
       interval: 30s
       timeout: 10s
       retries: 3

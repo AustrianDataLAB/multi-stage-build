@@ -1,0 +1,14 @@
+name: Run integration test using docker-compose
+on: push
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build the localdev environment
+        run:  make generate_certs
+      - name: make
+        run: make up
+      - name: TearDown
+        run: make down
