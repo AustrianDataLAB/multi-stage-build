@@ -1,20 +1,15 @@
 # Generate the index
-FROM node:16-alpine AS indexer
-WORKDIR /opt/blog-search
+FROM node
+
 COPY . .
 RUN npm install -g grunt-cli \
  && npm install \
  && grunt lunr-index
+ RUN apt update -y && apt install -y hugo
 
-# Build the site
-FROM klakegg/hugo:0.101.0-busybox AS builder
-WORKDIR /opt/blog-search
-COPY --from=indexer /opt/blog-search/ .
-WORKDIR /opt/blog-search/blog
-RUN hugo
 
-# Serve the site
-FROM nginx:1.23.3-alpine AS server
-COPY --from=builder /opt/blog-search/blog/public/  /var/www/html/public/
+RUN ls -lr && cd blog && hugo && mkdir -p /var/www/html/public
+RUN cp -r blog/public/  /var/www/html/public/
+
 EXPOSE 6443/tcp
 CMD ["/usr/sbin/nginx", "-g", "daemon off;"]

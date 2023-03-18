@@ -4,7 +4,7 @@ services:
   aocc-blog:
     build:
       context: .
-      dockerfile: ./Dockerfile
+      dockerfile: ./Dockerfile1
     container_name: aocc-blog
     volumes:
       - ./nginxconfig/mime.types:/etc/nginx/mime.types
