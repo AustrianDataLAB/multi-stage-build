@@ -1,0 +1,15 @@
+# This Dockerfile is likely something one might do as a first step, it is less than awesome
+FROM node
+
+COPY . .
+RUN npm install -g grunt-cli \
+ && npm install \
+ && grunt lunr-index
+ RUN apt update -y && apt install -y hugo
+
+
+RUN ls -lr && cd blog && hugo && mkdir -p /var/www/html/public
+RUN cp -r blog/public/  /var/www/html/public/
+
+EXPOSE 6443/tcp
+CMD ["/usr/sbin/nginx", "-g", "daemon off;"]
