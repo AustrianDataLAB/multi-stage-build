@@ -3,12 +3,12 @@ on:
   push:
     branches:
       - main 
-      - features/lecture5
+      - features/lecture5-2
   pull_request:
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: aocc/multi-stage-step1
+  IMAGE_NAME: aocc/multi-stage-step2
 
 
 jobs:
@@ -42,7 +42,7 @@ jobs:
 
       - name: Build an image from Dockerfile
         run: |
-          docker build -t ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.sha }} -f Dockerfile1 .
+          docker build -t ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.sha }} -f Dockerfile2 .
 
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@master
