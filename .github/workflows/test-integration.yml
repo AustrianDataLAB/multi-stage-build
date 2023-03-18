@@ -1,5 +1,9 @@
 name: Run integration test using docker-compose
-on: push
+on: 
+  push:
+    branches:
+      - main 
+  pull_request:
 jobs:
   build:
     runs-on: ubuntu-latest
