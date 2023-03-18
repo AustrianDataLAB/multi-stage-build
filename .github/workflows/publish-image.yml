@@ -61,6 +61,12 @@ jobs:
         with:
           sarif_file: 'trivy-results.sarif'
 
+      - name: Scan the image and upload dependency results
+        uses: anchore/sbom-action@bb716408e75840bbb01e839347cd213767269d4a
+        with:
+          image: '${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.sha }}'
+          artifact-name: image.spdx.json
+          dependency-snapshot: true
 
       # - name: Build and push Docker image
       #   uses: docker/build-push-action@ad44023a93711e3deb337508980b4b5e9bcdc5dc
