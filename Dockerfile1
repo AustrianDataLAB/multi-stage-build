@@ -1,4 +1,4 @@
-# Generate the index
+# This Dockerfile is likely something one might do as a first step, it is less than awesome
 FROM node
 
 COPY . .
