@@ -1,14 +1,14 @@
 # This Dockerfile is likely something one might do as a first step, it is less than awesome
 FROM node:19.4-alpine
-
+WORKDIR /opt/blog-search
 COPY . .
 RUN npm install -g grunt-cli \
  && npm install \
  && grunt lunr-index
- RUN  apk add  hugo
+RUN  apk add  hugo
 
 
-RUN ls -lr && cd blog && hugo && mkdir -p /var/www/html/public
+RUN  cd blog && hugo && mkdir -p /var/www/html/public
 RUN cp -r blog/public/  /var/www/html/public/
 
 EXPOSE 6443/tcp
