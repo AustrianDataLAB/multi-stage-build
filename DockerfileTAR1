@@ -1,0 +1,23 @@
+# This Dockerfile is likely something one might do as a first step, it is less than awesome
+FROM node:19.4-alpine
+
+
+WORKDIR /opt/blog-search/
+COPY package.json Gruntfile.js LICENSE README.md Makefile ./
+RUN npm install -g grunt-cli \
+ && npm install \
+ &&  apk add  hugo
+
+WORKDIR /opt/blog-search/blog
+COPY blog ./
+COPY nginxconfig ./
+COPY openssl ./ 
+COPY mysecret . 
+RUN grunt lunr-index && hugo && mkdir -p /var/www/html/public &&\
+    cp -r public/  /var/www/html/public/
+
+
+RUN rm mysecret
+
+EXPOSE 6443/tcp
+CMD ["/usr/sbin/nginx", "-g", "daemon off;"]
