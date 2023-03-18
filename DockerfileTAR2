@@ -1,0 +1,23 @@
+# syntax = docker/dockerfile:1.0-experimental
+## In your shell you need to :  export DOCKER_BUILDKIT=1 
+# needs to be built using docker build --secret id=mysecret,src=mysecret -t imagetar2 -f DockerfileTAR2 .
+FROM node:19.4-alpine
+
+
+WORKDIR /opt/blog-search/
+COPY package.json Gruntfile.js LICENSE README.md Makefile ./
+RUN npm install -g grunt-cli \
+ && npm install \
+ &&  apk add  hugo
+
+WORKDIR /opt/blog-search/blog
+COPY blog ./
+COPY nginxconfig ./
+COPY openssl ./ 
+RUN --mount=type=secret,id=mysecret,dst=/opt/blog-search/blog/mysecret cat /opt/blog-search/blog/mysecret &&\
+    grunt lunr-index && hugo && mkdir -p /var/www/html/public &&\
+    cp -r public/  /var/www/html/public/
+
+
+EXPOSE 6443/tcp
+CMD ["/usr/sbin/nginx", "-g", "daemon off;"]
