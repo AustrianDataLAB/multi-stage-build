@@ -8,7 +8,7 @@ on:
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: ${{ lowercase(github.repository) }}
+  IMAGE_NAME: aocc/multi-stage-step1
 
 
 jobs:
