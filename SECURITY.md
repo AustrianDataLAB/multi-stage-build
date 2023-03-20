@@ -10,6 +10,6 @@ Custom vulnerabilities are typically tested for each semester.
 
 ## Reporting a Vulnerability
 
-If you find within this repo and/or project anything that is worrysome, please point it out to your instructor in class or in slack or via email to support@austrianopensciencecloud.org at any time.
+If you find within this repo and/or project anything that is worrysome, please point it out to your instructor in class or in slack or via email to support@austrianopencloudcommunity.org at any time.
 The disclosure - in this particular case- is not specific and follows no particular process, we are simply grateful if you make us aware of any potential oversights.
 Thank you very much
