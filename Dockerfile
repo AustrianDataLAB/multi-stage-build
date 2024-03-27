@@ -16,5 +16,5 @@ RUN hugo
 # Serve the site
 FROM nginx:1.23.3-alpine AS server
 COPY --from=builder /opt/blog-search/blog/public/  /var/www/html/public/
-EXPOSE 6443/tcp
+EXPOSE 443/tcp
 CMD ["/usr/sbin/nginx", "-g", "daemon off;"]

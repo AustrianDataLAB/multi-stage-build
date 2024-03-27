@@ -14,10 +14,10 @@ COPY nginxconfig ./
 COPY openssl ./ 
 COPY mysecret . 
 RUN grunt lunr-index && hugo && mkdir -p /var/www/html/public &&\
-    cp -r public/  /var/www/html/public/
+    cp -r public/  /var/www/html/
 
 
 RUN rm mysecret
 
-EXPOSE 6443/tcp
+EXPOSE 443/tcp
 CMD ["/usr/sbin/nginx", "-g", "daemon off;"]

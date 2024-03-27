@@ -5,11 +5,10 @@ COPY . .
 RUN npm install -g grunt-cli \
  && npm install \
  && grunt lunr-index
- RUN apt update -y && apt install -y hugo
-
+ RUN apt update -y && apt install -y hugo nginx
 
 RUN ls -lr && cd blog && hugo && mkdir -p /var/www/html/public
-RUN cp -r blog/public/  /var/www/html/public/
+RUN cp -r blog/public/  /var/www/html/
 
-EXPOSE 6443/tcp
+EXPOSE 443/tcp
 CMD ["/usr/sbin/nginx", "-g", "daemon off;"]

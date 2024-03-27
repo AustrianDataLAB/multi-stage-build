@@ -16,8 +16,8 @@ COPY nginxconfig ./
 COPY openssl ./ 
 RUN --mount=type=secret,id=mysecret,dst=/opt/blog-search/blog/mysecret cat /opt/blog-search/blog/mysecret &&\
     grunt lunr-index && hugo && mkdir -p /var/www/html/public &&\
-    cp -r public/  /var/www/html/public/
+    cp -r public/  /var/www/html/
 
 
-EXPOSE 6443/tcp
+EXPOSE 443/tcp
 CMD ["/usr/sbin/nginx", "-g", "daemon off;"]

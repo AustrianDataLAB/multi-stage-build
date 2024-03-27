@@ -1,24 +1,23 @@
-# This Dockerfile is likely a bit better than the previous
-FROM node:19.4-alpine
+# This Dockerfile is a best practice example using wolfi as a baseimage
+FROM node:19.4-alpine AS indexer
 WORKDIR /opt/blog-search
 COPY package.json Gruntfile.js LICENSE README.md Makefile ./
-#Install packages
+COPY blog blog
+COPY nginxconfig nginxconfig
+COPY openssl openssl
 RUN npm install -g grunt-cli \
  && npm install \
- &&  apk add  hugo nginx
+ && grunt lunr-index
 
-
-# copy webser config and generate static files
+FROM klakegg/hugo:0.101.0-busybox AS builder
+WORKDIR /opt/blog-search
+COPY --from=indexer /opt/blog-search/ .
 WORKDIR /opt/blog-search/blog
-COPY blog ./
-COPY nginxconfig ./
-COPY openssl ./ 
-RUN grunt lunr-index && hugo && mkdir -p /var/www/html/public && cp -r  public/  /var/www/html/public/
+RUN hugo
 
-# Theoretically we d switch to non root now, currently I dont have time to fix all the perms
-#RUN chown -R nginx:nginx /var/www/html/ 
-#USER nginx 
 
-EXPOSE 6443/tcp
+FROM cgr.dev/chainguard/nginx@sha256:bcc6b0d052298112e4644b258de0fa4dc1509e3df8f7c0fba09e8c92987825e7
+COPY --from=builder /opt/blog-search/blog/public/ /var/www/html/public/
+EXPOSE 443/tcp
 
-CMD ["/usr/sbin/nginx", "-g", "daemon off;"]
+

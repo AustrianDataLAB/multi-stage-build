@@ -5,7 +5,7 @@ COPY package.json Gruntfile.js LICENSE README.md Makefile ./
 #Install packages
 RUN npm install -g grunt-cli \
  && npm install \
- &&  apk add  hugo
+ &&  apk add  hugo nginx
 
 
 # copy webser config and generate static files
@@ -14,7 +14,7 @@ COPY blog ./
 COPY nginxconfig ./
 COPY openssl ./ 
 RUN grunt lunr-index && hugo && mkdir -p /var/www/html/public &&\
-    cp -r public/  /var/www/html/public/
+    cp -r public/  /var/www/html/
 
-EXPOSE 6443/tcp
+EXPOSE 443/tcp
 CMD ["/usr/sbin/nginx", "-g", "daemon off;"]
