@@ -44,6 +44,8 @@ jobs:
 
       - name: Build an image from Dockerfile
         run: |
+          chmod +x scripts/generate_certs.sh
+          source scripts/generate_certs.sh
           docker build -t ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.sha }} -f Dockerfile5 .
 
       - name: Run Trivy vulnerability scanner
