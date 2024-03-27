@@ -49,15 +49,10 @@ jobs:
         run: |
           chmod +x scripts/generate_certs.sh
           source scripts/generate_certs.sh
-    
-      - name: Build and push Docker images
-        uses: docker/build-push-action@v2
-        with:
-          context: .
-          file: ./Dockerfile5
-          platforms: linux/amd64,linux/arm64
-          push: true
-          tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.sha }}
+          docker buildx build \
+          --tag ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.sha }} \
+          --platform linux/amd64,linux/arm/v7,linux/arm64 -f Dockerfile5 .
+
 
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@0.18.0
