@@ -51,7 +51,7 @@ jobs:
           source scripts/generate_certs.sh
           docker buildx build \
           --tag ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.sha }} \
-          --platform linux/amd64,linux/arm/v7,linux/arm64 -f Dockerfile5 .
+          --platform linux/amd64,linux/arm64 -f Dockerfile5 .
 
 
       - name: Run Trivy vulnerability scanner
