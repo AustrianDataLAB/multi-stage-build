@@ -15,11 +15,11 @@ jobs:
         run:  make generate_certs
       - name: make
         run: make sut
-      - name: Upload test results
+      - name: Publish Unit Test Results
+        uses: EnricoMi/publish-unit-test-result-action@v1
         if: always()
-        uses: actions/upload-artifact@v2
         with:
-          name: test-results
-          path: ./test-results/junit/*.xml
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          files: ./test-results/junit/*.xml
       - name: TearDown
         run: make down
