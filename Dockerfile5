@@ -1,7 +1,7 @@
 # This Dockerfile is a best practice example using wolfi as a baseimage
 FROM node:19.4-alpine AS indexer
 WORKDIR /opt/blog-search
-COPY package.json Gruntfile.js LICENSE README.md Makefile ./
+COPY package.json processFiles.js Gruntfile.js LICENSE README.md Makefile ./
 COPY blog blog
 COPY nginxconfig nginxconfig
 COPY openssl openssl
