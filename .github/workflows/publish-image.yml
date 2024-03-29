@@ -9,7 +9,7 @@ on:
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: aocc/multi-stage-step2
+  IMAGE_NAME: austriandatalab/multi-stage-step2
 
 
 jobs:
