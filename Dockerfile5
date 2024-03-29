@@ -11,11 +11,14 @@ FROM klakegg/hugo:0.101.0-busybox AS builder
 WORKDIR /opt/blog-search
 COPY nginxconfig nginxconfig
 COPY openssl openssl
-COPY --from=indexer /opt/blog-search/blog .
+COPY --from=indexer /opt/blog-search/ .
 WORKDIR /opt/blog-search/blog
 RUN hugo
 
 
-FROM cgr.dev/chainguard/nginx@sha256:bcc6b0d052298112e4644b258de0fa4dc1509e3df8f7c0fba09e8c92987825e7
-COPY --from=builder /opt/blog-search/blog/public/ /var/www/html/public/
+#FROM cgr.dev/chainguard/nginx@sha256:bcc6b0d052298112e4644b258de0fa4dc1509e3df8f7c0fba09e8c92987825e7
+FROM cgr.dev/chainguard/nginx:latest
+COPY --from=builder /opt/blog-search/blog/public/*.html /var/www/html/public/
+COPY --from=builder /opt/blog-search/blog/public/*.css /var/www/html/public/
+COPY --from=builder /opt/blog-search/blog/public/*.js /var/www/html/public/
 EXPOSE 443/tcp
