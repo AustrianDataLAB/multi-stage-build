@@ -43,6 +43,7 @@ jobs:
 
       - name: Build an image from Dockerfile
         run: |
+          make generate_certs
           docker build -t ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.sha }} -f Dockerfile5 .
 
 
