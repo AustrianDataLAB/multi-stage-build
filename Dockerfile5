@@ -3,15 +3,15 @@ FROM node:19.4-alpine AS indexer
 WORKDIR /opt/blog-search
 COPY package.json processFiles.js Gruntfile.js LICENSE README.md Makefile ./
 COPY blog blog
-COPY nginxconfig nginxconfig
-COPY openssl openssl
 RUN npm install -g grunt-cli \
  && npm install \
  && grunt lunr-index
 
 FROM klakegg/hugo:0.101.0-busybox AS builder
 WORKDIR /opt/blog-search
-COPY --from=indexer /opt/blog-search/ .
+COPY nginxconfig nginxconfig
+COPY openssl openssl
+COPY --from=indexer /opt/blog-search/blog .
 WORKDIR /opt/blog-search/blog
 RUN hugo
 
