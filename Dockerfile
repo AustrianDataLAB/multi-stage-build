@@ -6,6 +6,14 @@ RUN npm install -g grunt-cli \
  && npm install \
  && grunt lunr-index
 
+
+# Run unit tests
+FROM node:16-alpine AS tester
+WORKDIR /opt/blog-search
+COPY . .
+RUN  npm install --save-dev jest-junit && npm install\
+ && npx jest Gruntfile.test.js
+
 # Build the site
 FROM klakegg/hugo:0.101.0-busybox AS builder
 WORKDIR /opt/blog-search
