@@ -1,6 +1,7 @@
 # Certificates
 openssl
 directory
+test-results/.
 
 # Logs
 logs

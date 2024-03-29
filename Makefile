@@ -11,6 +11,10 @@ up:
 	docker-compose up -d --remove-orphans
 
 .PHONY:
+sut:
+	docker-compose -f docker-compose.yml run sut --remove-orphans
+
+.PHONY:
 down:
 	docker-compose down --remove-orphans
 
