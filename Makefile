@@ -12,7 +12,7 @@ up:
 
 .PHONY:
 sut:
-	docker-compose -f docker-compose.yml run sut --remove-orphans
+	docker-compose -f docker-compose.yml run sut 
 
 .PHONY:
 down:
