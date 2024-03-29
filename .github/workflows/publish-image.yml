@@ -3,7 +3,7 @@ on:
   push:
     branches:
       - main 
-      #- features/lecture5-2
+      - features/lecture5-2
   pull_request:
 
 env:
@@ -50,9 +50,10 @@ jobs:
         uses: aquasecurity/trivy-action@master
         with:
           image-ref: '${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.sha }}'
-          format: 'sarif'
-          output: 'trivy-results.sarif'
-          hide-progress: true
+          #format: 'sarif'
+          format: 'table'
+          output: 'stdout'
+          #output: 'trivy-results.sarif'
           exit-code: '1'
           ignore-unfixed: true
           severity: 'CRITICAL,HIGH' 
