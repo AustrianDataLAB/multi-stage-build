@@ -14,11 +14,13 @@ target_dir="$work_dir/output"
 cd "$work_dir"
 
 mkdir -p "$target_dir"
-for i in *; do
-  if [[ -f $i/layer.tar ]]; then
+docker image save $image -o tar2.tar
+tar -xf tar2.tar -C $target_dir
+for i in $target_dir/blobs/sha256/*; do
+  type=$(file -b --mime-type "$i")
+  echo $type
+  if [[ $type == "application/x-tar" ]]; then
     echo $i
-    cd $i 
-    tar -xf "layer.tar" 
-    cd ..
+    tar -xf $i -C $target_dir  
   fi
 done
